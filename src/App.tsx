@@ -1,4 +1,4 @@
-import { SOLSCAN_TOKEN_URL, DEXSCREENER_URL } from "./lib/solana";
+import { SOLSCAN_TOKEN_URL, DEXSCREENER_URL, X_COMMUNITY_URL } from "./lib/solana";
 
 import Navbar from "./components/Navbar";
 import TokenCard from "./components/TokenCard";
@@ -52,8 +52,36 @@ export default function App() {
                     </button>
                   </div>
 
-                  <a href="#play" className="mt-8 btn-primary text-sm">
-                    Start Running &darr;
+                  <div className="mt-6 flex items-center gap-3 flex-wrap justify-center">
+                    <a href="#play" className="btn-primary text-sm">
+                      Start Running &darr;
+                    </a>
+                    <a
+                      href={X_COMMUNITY_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-secondary text-sm inline-flex items-center gap-2"
+                    >
+                      Join our X Community &rarr;
+                    </a>
+                  </div>
+                </div>
+              </section>
+
+              {/* Community CTA Banner */}
+              <section className="section-container py-10">
+                <div className="mx-auto max-w-2xl rounded-2xl border border-brand-500/20 bg-brand-500/5 p-6 sm:p-8 text-center">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2">Join the RugRun Community</h3>
+                  <p className="text-gray-400 text-sm mb-5 max-w-md mx-auto">
+                    Connect with fellow survivors, share rugpull warnings, and stay safe together. Our X community is where runners help each other.
+                  </p>
+                  <a
+                    href={X_COMMUNITY_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary text-sm inline-flex items-center gap-2"
+                  >
+                    Join on X &rarr;
                   </a>
                 </div>
               </section>
@@ -105,6 +133,14 @@ export default function App() {
                       className="btn-secondary text-sm"
                     >
                       Dexscreener &rarr;
+                    </a>
+                    <a
+                      href={X_COMMUNITY_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-secondary text-sm"
+                    >
+                      X Community &rarr;
                     </a>
                   </div>
 

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -40,7 +39,14 @@ export default function Navbar() {
         {/* Wallet + mobile toggle */}
         <div className="flex items-center gap-3">
           <div className="hidden sm:block">
-            <WalletMultiButton />
+            <button
+              className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-sm font-semibold text-gray-400 cursor-not-allowed"
+              disabled
+              aria-label="Connect wallet coming soon"
+            >
+              Connect Wallet
+              <span className="rounded-md bg-brand-500/20 px-1.5 py-0.5 text-[10px] font-bold text-brand-400">SOON</span>
+            </button>
           </div>
 
           {/* Mobile hamburger */}
@@ -71,7 +77,14 @@ export default function Navbar() {
               </a>
             ))}
             <div className="pt-2 sm:hidden">
-              <WalletMultiButton />
+              <button
+                className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-sm font-semibold text-gray-400 cursor-not-allowed w-full justify-center"
+                disabled
+                aria-label="Connect wallet coming soon"
+              >
+                Connect Wallet
+                <span className="rounded-md bg-brand-500/20 px-1.5 py-0.5 text-[10px] font-bold text-brand-400">SOON</span>
+              </button>
             </div>
           </div>
         </div>

@@ -1,33 +1,15 @@
-import { useMemo } from "react";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
-import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
-import { BackpackWalletAdapter } from "@solana/wallet-adapter-backpack";
-import { getRpcEndpoint, SOLSCAN_TOKEN_URL, DEXSCREENER_URL } from "./lib/solana";
+import { SOLSCAN_TOKEN_URL, DEXSCREENER_URL } from "./lib/solana";
 
 import Navbar from "./components/Navbar";
 import TokenCard from "./components/TokenCard";
-import WalletConnect from "./components/WalletConnect";
 import GameCanvas from "./components/GameCanvas";
 import Leaderboard from "./components/Leaderboard";
 import Rewards from "./components/Rewards";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 
-import "@solana/wallet-adapter-react-ui/styles.css";
-
 export default function App() {
-  const endpoint = useMemo(() => getRpcEndpoint(), []);
-  const wallets = useMemo(
-    () => [new PhantomWalletAdapter(), new SolflareWalletAdapter(), new BackpackWalletAdapter()],
-    []
-  );
-
   return (
-    <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
           <div className="relative min-h-screen">
             {/* Background decorations */}
             <div className="pointer-events-none fixed inset-0 overflow-hidden">
@@ -44,15 +26,15 @@ export default function App() {
                 <div className="flex flex-col items-center text-center">
                   <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-500/20 bg-brand-500/10 px-4 py-1.5">
                     <span className="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse" />
-                    <span className="text-xs font-medium text-brand-400">Live on Solana</span>
+                    <span className="text-xs font-medium text-brand-400">Outrun the rugpulls</span>
                   </div>
 
                   <h1 className="text-5xl sm:text-7xl font-black tracking-tight">
                     <span className="text-gradient">RugRun</span>
                   </h1>
 
-                  <p className="mt-4 text-lg sm:text-xl text-gray-400 max-w-md">
-                    Play. Compete. Prove your score.
+                  <p className="mt-4 text-lg sm:text-xl text-gray-400 max-w-lg">
+                    The Solana jungle is full of rugpulls. At RugRun, you learn to dodge them — and get rewarded for surviving.
                   </p>
 
                   {/* Token Address Card - centered */}
@@ -61,11 +43,17 @@ export default function App() {
                   </div>
 
                   <div className="mt-6">
-                    <WalletConnect />
+                    <button
+                      className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-5 py-3 text-sm font-semibold text-gray-400 cursor-not-allowed border border-white/10"
+                      disabled
+                    >
+                      Connect Wallet
+                      <span className="rounded-md bg-brand-500/20 px-2 py-0.5 text-[10px] font-bold text-brand-400">COMING SOON</span>
+                    </button>
                   </div>
 
                   <a href="#play" className="mt-8 btn-primary text-sm">
-                    Play Now &darr;
+                    Start Running &darr;
                   </a>
                 </div>
               </section>
@@ -73,9 +61,9 @@ export default function App() {
               {/* Game */}
               <section id="play" className="section-container py-16 sm:py-24">
                 <div className="text-center mb-10">
-                  <h2 className="text-3xl font-bold">Play RugRun</h2>
-                  <p className="mt-2 text-gray-500 text-sm">
-                    Dodge rugs. Collect SOL shards. Set a high score.
+                  <h2 className="text-3xl font-bold">Escape the Rugpulls</h2>
+                  <p className="mt-2 text-gray-500 text-sm max-w-md mx-auto">
+                    Jump over honeypots, fake LPs, and dev dumps. Grab verified safe tokens. How long can you survive?
                   </p>
                 </div>
                 <GameCanvas />
@@ -134,8 +122,5 @@ export default function App() {
 
             <Footer />
           </div>
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
   );
 }

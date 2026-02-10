@@ -40,8 +40,8 @@ export default function Footer() {
         </div>
 
         <p className="mt-6 text-center text-[11px] text-gray-700 max-w-xl mx-auto leading-relaxed">
-          RugRun is a community project. Nothing on this site constitutes financial advice.
-          Token purchases carry risk. Do your own research.
+          RugRun is a community project built to raise awareness about rugpulls on Solana.
+          Nothing on this site constitutes financial advice. Always DYOR. Stay safe out there.
         </p>
       </div>
     </footer>

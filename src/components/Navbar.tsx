@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { X_COMMUNITY_URL } from "../lib/solana";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -38,6 +39,14 @@ export default function Navbar() {
 
         {/* Wallet + mobile toggle */}
         <div className="flex items-center gap-3">
+          <a
+            href={X_COMMUNITY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-brand-500/10 border border-brand-500/20 px-3 py-2 text-xs font-semibold text-brand-400 hover:bg-brand-500/20 transition-colors"
+          >
+            Join X Community
+          </a>
           <div className="hidden sm:block">
             <button
               className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-sm font-semibold text-gray-400 cursor-not-allowed"
@@ -76,6 +85,15 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href={X_COMMUNITY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-1 flex items-center justify-center gap-1.5 rounded-lg bg-brand-500/10 border border-brand-500/20 px-3 py-2.5 text-xs font-semibold text-brand-400 hover:bg-brand-500/20 transition-colors"
+            >
+              Join X Community
+            </a>
             <div className="pt-2 sm:hidden">
               <button
                 className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-sm font-semibold text-gray-400 cursor-not-allowed w-full justify-center"

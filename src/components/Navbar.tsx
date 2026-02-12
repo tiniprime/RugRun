@@ -19,9 +19,9 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2 font-extrabold text-xl">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 text-black text-sm font-black">
-            R
+            $
           </span>
-          <span className="text-gradient">RugRun</span>
+          <span className="text-gradient">GetRichQuick</span>
         </a>
 
         {/* Desktop links */}

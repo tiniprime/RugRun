@@ -8,9 +8,9 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex items-center gap-2">
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-brand-500 text-black text-xs font-black">
-              R
+              $
             </span>
-            <span className="font-bold text-gradient">RugRun</span>
+            <span className="font-bold text-gradient">GetRichQuick</span>
           </div>
 
           {/* Links */}
@@ -37,13 +37,13 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-xs text-gray-600">
-            &copy; {new Date().getFullYear()} RugRun. All rights reserved.
+            &copy; {new Date().getFullYear()} GetRichQuick. All rights reserved.
           </p>
         </div>
 
         <p className="mt-6 text-center text-[11px] text-gray-700 max-w-xl mx-auto leading-relaxed">
-          RugRun is a community project built to raise awareness about rugpulls on Solana.
-          Nothing on this site constitutes financial advice. Always DYOR. Stay safe out there.
+          GetRichQuick is a community project on Solana. Stack bags, not regrets.
+          Nothing on this site constitutes financial advice. Always DYOR. No pishman here.
         </p>
       </div>
     </footer>

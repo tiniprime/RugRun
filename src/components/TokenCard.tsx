@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TOKEN_MINT, SOLSCAN_TOKEN_URL } from "../lib/solana";
+import { getTokenMint, getSolscanUrl } from "../lib/solana";
 import { truncatePubkey, copyToClipboard } from "../lib/format";
 
 interface TokenCardProps {
@@ -11,7 +11,7 @@ export default function TokenCard({ className = "", compact = false }: TokenCard
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    await copyToClipboard(TOKEN_MINT);
+    await copyToClipboard(getTokenMint());
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -26,7 +26,7 @@ export default function TokenCard({ className = "", compact = false }: TokenCard
         )}
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <code className="font-mono text-sm sm:text-base text-gray-300 break-all select-all">
-            {compact ? truncatePubkey(TOKEN_MINT, 6) : TOKEN_MINT}
+            {compact ? truncatePubkey(getTokenMint(), 6) : getTokenMint()}
           </code>
           <button
             onClick={handleCopy}
@@ -48,7 +48,7 @@ export default function TokenCard({ className = "", compact = false }: TokenCard
         </div>
         <div className="mt-3 flex items-center justify-center gap-3">
           <a
-            href={SOLSCAN_TOKEN_URL}
+            href={getSolscanUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs font-medium text-brand-400 hover:text-brand-300 transition-colors underline underline-offset-2"

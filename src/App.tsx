@@ -1,4 +1,5 @@
-import { SOLSCAN_TOKEN_URL, DEXSCREENER_URL, X_COMMUNITY_URL } from "./lib/solana";
+import { useState, useEffect } from "react";
+import { getSolscanUrl, getDexscreenerUrl, X_COMMUNITY_URL } from "./lib/solana";
 
 import Navbar from "./components/Navbar";
 import TokenCard from "./components/TokenCard";
@@ -7,8 +8,29 @@ import Leaderboard from "./components/Leaderboard";
 import Rewards from "./components/Rewards";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
+import AdminPanel from "./components/AdminPanel";
 
 export default function App() {
+  const [isAdmin, setIsAdmin] = useState(window.location.hash === "#/admin");
+
+  useEffect(() => {
+    const onHash = () => setIsAdmin(window.location.hash === "#/admin");
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  if (isAdmin) {
+    return (
+      <div className="relative min-h-screen">
+        <div className="pointer-events-none fixed inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-brand-500/5 blur-3xl" />
+          <div className="absolute top-1/2 -left-40 h-[500px] w-[500px] rounded-full bg-emerald-500/5 blur-3xl" />
+        </div>
+        <AdminPanel />
+      </div>
+    );
+  }
+
   return (
           <div className="relative min-h-screen">
             {/* Background decorations */}
@@ -26,19 +48,29 @@ export default function App() {
                 <div className="flex flex-col items-center text-center">
                   <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-500/20 bg-brand-500/10 px-4 py-1.5">
                     <span className="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse" />
-                    <span className="text-xs font-medium text-brand-400">Outrun the rugpulls</span>
+                    <span className="text-xs font-medium text-brand-400">Stack bags. No regrets.</span>
                   </div>
 
                   <h1 className="text-5xl sm:text-7xl font-black tracking-tight">
-                    <span className="text-gradient">RugRun</span>
+                    <span className="text-gradient">GetRichQuick</span>
                   </h1>
 
                   <p className="mt-4 text-lg sm:text-xl text-gray-400 max-w-lg">
-                    The Solana jungle is full of rugpulls. At RugRun, you learn to dodge them — and get rewarded for surviving.
+                    The money game on Solana. Play, collect cash, and stack bags. People who invest here don't look back — only forward. No regrets, only profits.
                   </p>
 
-                  {/* Token Address Card - centered */}
-                  <div className="mt-8 w-full max-w-lg">
+                  {/* No regrets banner */}
+                  <div className="mt-6 max-w-lg w-full rounded-2xl border border-brand-500/20 bg-brand-500/5 p-4 text-center">
+                    <p className="text-sm font-semibold text-brand-400">
+                      Investors here are never pishman. We only go up.
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Diamond hands. No regrets. Just money.
+                    </p>
+                  </div>
+
+                  {/* Token Address Card */}
+                  <div className="mt-6 w-full max-w-lg">
                     <TokenCard />
                   </div>
 
@@ -54,7 +86,7 @@ export default function App() {
 
                   <div className="mt-6 flex items-center gap-3 flex-wrap justify-center">
                     <a href="#play" className="btn-primary text-sm">
-                      Start Running &darr;
+                      Start Stacking $ &darr;
                     </a>
                     <a
                       href={X_COMMUNITY_URL}
@@ -71,10 +103,11 @@ export default function App() {
               {/* Community CTA Banner */}
               <section className="section-container py-10">
                 <div className="mx-auto max-w-2xl rounded-2xl border border-brand-500/20 bg-brand-500/5 p-6 sm:p-8 text-center">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-2">Join the RugRun Community</h3>
-                  <p className="text-gray-400 text-sm mb-5 max-w-md mx-auto">
-                    Connect with fellow survivors, share rugpull warnings, and stay safe together. Our X community is where runners help each other.
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2">Join the GetRichQuick Community</h3>
+                  <p className="text-gray-400 text-sm mb-3 max-w-md mx-auto">
+                    Connect with fellow money makers. Share wins, stack bags together, and never be pishman again. Our X community is where the profits flow.
                   </p>
+                  <p className="text-brand-400 text-xs font-semibold mb-5">Early investors = biggest bags. Don't regret missing this.</p>
                   <a
                     href={X_COMMUNITY_URL}
                     target="_blank"
@@ -89,9 +122,9 @@ export default function App() {
               {/* Game */}
               <section id="play" className="section-container py-16 sm:py-24">
                 <div className="text-center mb-10">
-                  <h2 className="text-3xl font-bold">Escape the Rugpulls</h2>
+                  <h2 className="text-3xl font-bold">Play & Stack Money</h2>
                   <p className="mt-2 text-gray-500 text-sm max-w-md mx-auto">
-                    Jump over honeypots, fake LPs, and dev dumps. Grab verified safe tokens. How long can you survive?
+                    Dodge the scams, grab the cash bags, and watch your money grow. The longer you survive, the richer you get.
                   </p>
                 </div>
                 <GameCanvas />
@@ -119,7 +152,7 @@ export default function App() {
 
                   <div className="flex items-center justify-center gap-4 flex-wrap">
                     <a
-                      href={SOLSCAN_TOKEN_URL}
+                      href={getSolscanUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-secondary text-sm"
@@ -127,7 +160,7 @@ export default function App() {
                       Solscan &rarr;
                     </a>
                     <a
-                      href={DEXSCREENER_URL}
+                      href={getDexscreenerUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-secondary text-sm"

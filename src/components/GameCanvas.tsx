@@ -38,7 +38,7 @@ const GRAVITY = 0.7;
 const JUMP_FORCE = -13.5;
 const BASE_SPEED = 4;
 
-// Rugpull "danger wave" that chases from the left
+// Poverty "danger wave" that chases from the left
 const DANGER_WAVE_W = 60;
 
 export default function GameCanvas() {
@@ -250,7 +250,7 @@ export default function GameCanvas() {
         // Spawn safe token pickups
         if (g.frameCount % 80 === 0 && Math.random() > 0.35) {
           const values = [0.25, 0.50, 1.00, 2.00, 5.00];
-          const labels = ["SAFE", "VERIFIED", "AUDIT", "LEGIT", "SAFU"];
+          const labels = ["CASH", "MONEY", "BAG", "STACK", "PROFIT"];
           g.tokens.push({
             x: CANVAS_W + 20,
             y: GROUND_Y - 65 - Math.random() * 85,
@@ -320,7 +320,7 @@ export default function GameCanvas() {
         ctx.fillStyle = "rgba(255,255,255,0.3)";
         ctx.font = "bold 10px monospace";
         ctx.textAlign = "center";
-        ctx.fillText("RUGPULL", 0, 0);
+        ctx.fillText("POVERTY", 0, 0);
         ctx.restore();
       }
 
@@ -349,13 +349,13 @@ export default function GameCanvas() {
         }
       }
 
-      // === DRAW SAFE TOKEN PICKUPS ===
+      // === DRAW MONEY BAG PICKUPS ===
       for (const t of g.tokens) {
         if (t.collected) continue;
         // Glow
         ctx.shadowColor = "#22c55e";
         ctx.shadowBlur = 10;
-        // Shield shape (circle with checkmark)
+        // Money bag shape
         ctx.fillStyle = "#166534";
         ctx.beginPath();
         ctx.arc(t.x + 8, t.y + 8, 12, 0, Math.PI * 2);
@@ -374,13 +374,13 @@ export default function GameCanvas() {
         ctx.fillStyle = "#bbf7d0";
         ctx.font = "bold 7px sans-serif";
         ctx.fillText(`$${t.value.toFixed(2)}`, t.x + 8, t.y - 4);
-        // "SAFE" label
+        // Pickup label
         ctx.fillStyle = "#4ade80";
         ctx.font = "bold 5px monospace";
         ctx.fillText(t.label, t.x + 8, t.y + 24);
       }
 
-      // === DRAW PLAYER (trader running from rugpulls) ===
+      // === DRAW PLAYER (money collector) ===
       const px = 60;
       const py = g.playerY;
       // Shadow
@@ -430,11 +430,11 @@ export default function GameCanvas() {
       }
 
       // === HUD ===
-      // Rugs avoided counter
+      // Scams dodged counter
       ctx.fillStyle = "#ef4444";
       ctx.font = "bold 11px 'Inter', sans-serif";
       ctx.textAlign = "right";
-      ctx.fillText(`\u26A0 Rugs avoided: ${g.rugsAvoided}`, CANVAS_W - 16, 48);
+      ctx.fillText(`\u26A0 Scams dodged: ${g.rugsAvoided}`, CANVAS_W - 16, 48);
 
       ctx.fillStyle = "#ffffff";
       ctx.font = "bold 16px 'Inter', sans-serif";
@@ -443,7 +443,7 @@ export default function GameCanvas() {
 
       ctx.fillStyle = "#22c55e";
       ctx.font = "bold 16px 'Inter', sans-serif";
-      ctx.fillText(`$${g.money.toFixed(2)} saved`, 16, 48);
+      ctx.fillText(`$${g.money.toFixed(2)} stacked`, 16, 48);
 
       ctx.font = "11px 'Inter', sans-serif";
       ctx.fillStyle = "#9ca3af";
@@ -458,23 +458,23 @@ export default function GameCanvas() {
         ctx.fillStyle = "#22c55e";
         ctx.font = "bold 40px 'Inter', sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("RugRun", CANVAS_W / 2, CANVAS_H / 2 - 45);
+        ctx.fillText("GetRichQuick", CANVAS_W / 2, CANVAS_H / 2 - 45);
 
-        ctx.fillStyle = "#ef4444";
+        ctx.fillStyle = "#fbbf24";
         ctx.font = "14px 'Inter', sans-serif";
-        ctx.fillText("Escape the rugpulls. Survive the Solana jungle.", CANVAS_W / 2, CANVAS_H / 2 - 15);
+        ctx.fillText("Stack money. Dodge scams. No regrets.", CANVAS_W / 2, CANVAS_H / 2 - 15);
 
         ctx.fillStyle = "#ffffff";
         ctx.font = "bold 16px 'Inter', sans-serif";
-        ctx.fillText("Press SPACE or tap to run", CANVAS_W / 2, CANVAS_H / 2 + 18);
+        ctx.fillText("Press SPACE or tap to start stacking", CANVAS_W / 2, CANVAS_H / 2 + 18);
 
         ctx.fillStyle = "#4ade80";
         ctx.font = "12px 'Inter', sans-serif";
-        ctx.fillText("Jump over scam tokens \u2022 Collect safe tokens \u2022 Don't get rugged", CANVAS_W / 2, CANVAS_H / 2 + 48);
+        ctx.fillText("Grab cash bags \u2022 Jump over scams \u2022 Get rich or die trying", CANVAS_W / 2, CANVAS_H / 2 + 48);
 
         ctx.fillStyle = "#6b7280";
         ctx.font = "11px 'Inter', sans-serif";
-        ctx.fillText("At RugRun, we keep you safe.", CANVAS_W / 2, CANVAS_H / 2 + 72);
+        ctx.fillText("Investors here are never pishman.", CANVAS_W / 2, CANVAS_H / 2 + 72);
       }
 
       // === GAME OVER SCREEN ===
@@ -485,27 +485,27 @@ export default function GameCanvas() {
         ctx.fillStyle = "#ef4444";
         ctx.font = "bold 34px 'Inter', sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("YOU GOT RUGGED!", CANVAS_W / 2, CANVAS_H / 2 - 55);
+        ctx.fillText("SCAMMED!", CANVAS_W / 2, CANVAS_H / 2 - 55);
 
         ctx.fillStyle = "#9ca3af";
         ctx.font = "13px 'Inter', sans-serif";
-        ctx.fillText("A scam token got you. It happens to the best of us.", CANVAS_W / 2, CANVAS_H / 2 - 30);
+        ctx.fillText("A scam got your bag. But real ones get back up.", CANVAS_W / 2, CANVAS_H / 2 - 30);
 
         ctx.fillStyle = "#ffffff";
         ctx.font = "18px 'Inter', sans-serif";
-        ctx.fillText(`Score: ${g.score}  |  Rugs avoided: ${g.rugsAvoided}`, CANVAS_W / 2, CANVAS_H / 2);
+        ctx.fillText(`Score: ${g.score}  |  Scams dodged: ${g.rugsAvoided}`, CANVAS_W / 2, CANVAS_H / 2);
 
         ctx.fillStyle = "#22c55e";
         ctx.font = "bold 24px 'Inter', sans-serif";
-        ctx.fillText(`You saved $${g.money.toFixed(2)} before the rug`, CANVAS_W / 2, CANVAS_H / 2 + 32);
+        ctx.fillText(`You stacked $${g.money.toFixed(2)} this round`, CANVAS_W / 2, CANVAS_H / 2 + 32);
 
         ctx.fillStyle = "#9ca3af";
         ctx.font = "14px 'Inter', sans-serif";
-        ctx.fillText("Press ENTER or tap to run again", CANVAS_W / 2, CANVAS_H / 2 + 62);
+        ctx.fillText("Press ENTER or tap to stack again", CANVAS_W / 2, CANVAS_H / 2 + 62);
 
-        ctx.fillStyle = "#4ade80";
-        ctx.font = "11px 'Inter', sans-serif";
-        ctx.fillText("Next time, RugRun has your back.", CANVAS_W / 2, CANVAS_H / 2 + 85);
+        ctx.fillStyle = "#fbbf24";
+        ctx.font = "bold 11px 'Inter', sans-serif";
+        ctx.fillText("No pishman. Get back in and stack more.", CANVAS_W / 2, CANVAS_H / 2 + 85);
       }
 
       frameRef.current = requestAnimationFrame(loop);
@@ -548,10 +548,10 @@ export default function GameCanvas() {
           Score: <span className="font-bold text-white">{score}</span>
         </span>
         <span className="text-brand-400 font-bold text-base">
-          ${money.toFixed(2)} saved
+          ${money.toFixed(2)} stacked
         </span>
         <span className="text-red-400 text-xs">
-          Rugs avoided: <span className="font-bold">{survived}</span>
+          Scams dodged: <span className="font-bold">{survived}</span>
         </span>
         <span className="text-gray-400">
           Best: <span className="font-bold text-brand-400">{bestScore}</span>
@@ -562,9 +562,9 @@ export default function GameCanvas() {
       {gameState === "over" && (
         <div className="mx-auto max-w-lg glass-card p-5 space-y-4">
           <div className="text-center">
-            <p className="text-xs font-medium uppercase tracking-wider text-red-400">You got rugged</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-red-400">Scammed this round</p>
             <p className="text-3xl font-bold text-brand-400 mt-1">${money.toFixed(2)}</p>
-            <p className="text-xs text-gray-500 mt-1">saved before the rug pulled</p>
+            <p className="text-xs text-gray-500 mt-1">stacked before the scam hit</p>
           </div>
 
           <div className="flex items-center justify-center gap-4 text-xs">
@@ -574,11 +574,11 @@ export default function GameCanvas() {
             </div>
             <div className="rounded-lg bg-white/5 px-3 py-2 text-center">
               <p className="font-bold text-red-400">{survived}</p>
-              <p className="text-gray-500">Rugs dodged</p>
+              <p className="text-gray-500">Scams dodged</p>
             </div>
             <div className="rounded-lg bg-white/5 px-3 py-2 text-center">
               <p className="font-bold text-brand-400">${money.toFixed(2)}</p>
-              <p className="text-gray-500">Saved</p>
+              <p className="text-gray-500">Stacked</p>
             </div>
           </div>
 
@@ -599,7 +599,7 @@ export default function GameCanvas() {
 
       {/* Disclaimer */}
       <p className="text-center text-[11px] text-gray-600 max-w-lg mx-auto">
-        Demo game. No real money involved yet. Stay safe from real rugpulls — always DYOR.
+        Demo game. No real money involved yet. Stack bags, not regrets. Always DYOR.
       </p>
     </div>
   );

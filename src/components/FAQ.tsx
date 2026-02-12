@@ -1,38 +1,42 @@
 import { useState } from "react";
-import { SOLSCAN_TOKEN_URL } from "../lib/solana";
+import { getSolscanUrl } from "../lib/solana";
 
 const FAQS = [
   {
-    q: "What is a rugpull in Solana?",
-    a: "A rugpull is a crypto scam where developers create a token, hype it up to attract buyers, then suddenly drain all the liquidity and disappear with everyone's money. On Solana, rugpulls are common in the memecoin space because it's cheap and fast to launch tokens. Common tactics include honeypots (you can buy but not sell), fake liquidity pools, dev wallet dumps, and exit scams. RugRun teaches you to recognize these patterns through gameplay.",
+    q: "What is GetRichQuick?",
+    a: "GetRichQuick is a Solana memecoin with a playable money game. You collect cash, dodge scams, and stack bags. The longer you play, the more you earn. It's the coin for people who don't want to be pishman — no regrets, only profits.",
   },
   {
-    q: "How does RugRun protect me from rugpulls?",
-    a: "RugRun is a game that trains your instincts. Every obstacle represents a real scam tactic used on Solana: honeypots, fake LPs, pump & dumps, dev dumps, and exit scams. The more you play, the faster you'll recognize these red flags in real life. We also build community awareness — survivors help each other spot the next rug.",
+    q: "Will I regret investing?",
+    a: "GetRichQuick investors don't do regret. We don't look back, we only look forward. This community is built on diamond hands and conviction. People who got in early? They're not pishman — they're celebrating. The only regret is not buying sooner.",
+  },
+  {
+    q: "What makes this different from other memecoins?",
+    a: "Most memecoins are empty promises. GetRichQuick has an actual game where you earn money, a strong community on X, and a culture of 'no regrets.' We teach you to dodge scams in the game so you're smarter with your real money too. Plus — our holders don't sell, they stack.",
+  },
+  {
+    q: "How does the game work?",
+    a: "You play as a money collector running through the Solana jungle. Grab green money bags ($0.25 to $5.00 each) to stack your earnings. Jump over scam obstacles (honeypots, fake LPs, pump & dumps). The longer you survive, the richer you get. When you lose, you can copy your score proof and share it in our community.",
   },
   {
     q: "What do the obstacles in the game represent?",
-    a: "Each obstacle is a real rugpull tactic: HONEYPOT = tokens you can buy but can't sell. FAKE LP = artificial liquidity that gets pulled. DEV DUMP = developers selling their huge token allocation. EXIT SCAM = project abandonment after collecting funds. PUMP & DUMP = artificially inflating price then crashing it. The green pickups represent safe, audited, verified tokens — the ones you should look for in real life.",
-  },
-  {
-    q: "Is this financial advice?",
-    a: "No. RugRun is a community game built for awareness and fun. Nothing on this site constitutes financial advice. Always do your own research (DYOR) before buying any token. We're here to educate, not advise.",
+    a: "Each obstacle is a real scam tactic: HONEYPOT = tokens you can buy but can't sell. FAKE LP = liquidity that gets pulled. DEV DUMP = devs dumping their bags. EXIT SCAM = project abandoned. PUMP & DUMP = price manipulation. GetRichQuick teaches you to avoid all of these — in the game and in real life.",
   },
   {
     q: "Are rewards guaranteed?",
-    a: "No. Rewards are distributed at the team's discretion during community events. There are no guaranteed earnings, payouts, or returns. The $ amounts in the game are for fun — real rewards depend on community events and wallet connect launching.",
+    a: "Rewards are distributed at the team's discretion during community events. The $ amounts in the game are for fun. Real rewards depend on community events and wallet connect launching. But one thing is guaranteed — holders here don't regret it.",
   },
   {
     q: "When is wallet connect launching?",
-    a: "Wallet connect is coming soon. We're building it out with Phantom, Solflare, and Backpack support. Once live, you'll be able to link your wallet, sign score proofs, and claim rewards on-chain. Follow our X and Telegram for updates.",
-  },
-  {
-    q: "How do I spot a rugpull in real life?",
-    a: "Key red flags: anonymous team with no track record, locked liquidity that expires soon or isn't locked at all, no audit, sudden massive buy pressure from a few wallets, unrealistic promises of returns, contract code that blocks selling (honeypot), and dev wallets holding a huge % of supply. Always check Solscan, RugCheck, and community reviews before aping in.",
+    a: "Coming soon. We're building it with Phantom, Solflare, and Backpack support. Once live, you'll link your wallet, sign score proofs, and claim rewards on-chain. Early players will have the biggest advantage. Follow our X community for updates.",
   },
   {
     q: "How do I verify the token address?",
-    a: "Always verify the contract address from official sources. Check it on Solscan and cross-reference with our official X account and Telegram channel. Never trust links from DMs or random posts.",
+    a: "Always verify the contract address from official sources. Check it on Solscan and cross-reference with our official X community. Never trust links from DMs or random posts. Smart money verifies first.",
+  },
+  {
+    q: "Why should I buy now?",
+    a: "Early investors = biggest bags. The community is growing fast, the game is live, and wallet connect is coming soon. People who get in now won't be pishman later. No regrets, only profits. The question isn't why buy now — it's why haven't you already?",
   },
 ];
 
@@ -69,7 +73,7 @@ export default function FAQ() {
                 <p className="text-sm text-gray-400 leading-relaxed">{faq.a}</p>
                 {faq.q.includes("verify") && (
                   <a
-                    href={SOLSCAN_TOKEN_URL}
+                    href={getSolscanUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 inline-block text-xs text-brand-400 hover:text-brand-300 underline underline-offset-2"

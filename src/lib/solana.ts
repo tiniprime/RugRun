@@ -29,6 +29,8 @@ export function getDexscreenerUrl(): string {
   return `https://dexscreener.com/solana/${getTokenMint()}`;
 }
 
+export const DEXSCREENER_CHART_URL = "https://dexscreener.com/solana/4ditkx9kjajeui4vqdwbzl4sztv6k7fegd4ufbnuz44t";
+
 export const X_COMMUNITY_URL = "https://x.com/i/communities/2021322872828878918";
 
 export function getRpcEndpoint(): string {

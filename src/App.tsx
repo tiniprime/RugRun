@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { getSolscanUrl, getDexscreenerUrl, X_COMMUNITY_URL, getRpcEndpoint } from "./lib/solana";
+import { DEXSCREENER_CHART_URL, getSolscanUrl, getDexscreenerUrl, X_COMMUNITY_URL, getRpcEndpoint } from "./lib/solana";
 
 import "@solana/wallet-adapter-react-ui/styles.css";
 
@@ -57,9 +57,17 @@ function MainSite() {
               <TokenCard />
             </div>
 
-            {/* BUY THE TOKEN + Join X */}
-            <div className="mt-8 flex items-center gap-4 flex-wrap justify-center">
+            {/* BUY THE TOKEN + BUY in DEX + Join X */}
+            <div className="flex flex-col sm:flex-row gap-4 items-center max-w-lg mx-auto">
               <BuyToken />
+              <a
+                href={DEXSCREENER_CHART_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary text-base sm:text-lg px-8 py-4 font-bold inline-flex items-center gap-2"
+              >
+                BUY in DEX &rarr;
+              </a>
               <a
                 href={X_COMMUNITY_URL}
                 target="_blank"
@@ -79,6 +87,24 @@ function MainSite() {
             <p className="mt-2 text-gray-500 text-sm max-w-md mx-auto">
               Connect your wallet, pick how much you want to invest, and buy. Early investors = biggest bags.
             </p>
+            <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
+              <a
+                href={DEXSCREENER_CHART_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary text-sm"
+              >
+                BUY in DEX &rarr;
+              </a>
+              <a
+                href={X_COMMUNITY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary text-sm"
+              >
+                Join X &rarr;
+              </a>
+            </div>
           </div>
           <BuyToken />
         </section>
@@ -127,12 +153,12 @@ function MainSite() {
                 Solscan &rarr;
               </a>
               <a
-                href={getDexscreenerUrl()}
+                href={DEXSCREENER_CHART_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary text-sm"
               >
-                Dexscreener &rarr;
+                BUY in DEX &rarr;
               </a>
               <a
                 href={X_COMMUNITY_URL}

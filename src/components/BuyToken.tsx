@@ -44,27 +44,9 @@ async function rpcGetBalance(pubkey: string): Promise<number> {
   throw new Error("Provider does not support getBalance");
 }
 
-// Blockhash via wallet provider RPC
-async function rpcGetBlockhash(): Promise<{ blockhash: string; lastValidBlockHeight: number }> {
-  const provider = getProvider();
-  if (!provider) throw new Error("No wallet provider found");
-
-  if (provider.request) {
-    try {
-      const res = await provider.request({
-        method: "getLatestBlockhash",
-        params: [{ commitment: "confirmed" }],
-      });
-      const val = res?.value || res;
-      if (val?.blockhash) return val;
-    } catch { /* fall through */ }
-  }
-
-  if (provider.connection?.getLatestBlockhash) {
-    return await provider.connection.getLatestBlockhash("confirmed");
-  }
-
-  throw new Error("Provider does not support getLatestBlockhash");
+// Blockhash via public connection (wallet providers don't support getLatestBlockhash)
+async function getBlockhash(connection: any): Promise<{ blockhash: string; lastValidBlockHeight: number }> {
+  return await connection.getLatestBlockhash("confirmed");
 }
 
 // Send via wallet provider's signAndSendTransaction (uses wallet's RPC)
@@ -148,8 +130,8 @@ export default function BuyToken() {
       );
       tx.feePayer = publicKey;
 
-      // Blockhash from wallet provider
-      const { blockhash, lastValidBlockHeight } = await rpcGetBlockhash();
+      // Blockhash from public connection
+      const { blockhash, lastValidBlockHeight } = await getBlockhash(connection);
       tx.recentBlockhash = blockhash;
       tx.lastValidBlockHeight = lastValidBlockHeight;
 

@@ -31,6 +31,10 @@ export function getDexscreenerUrl(): string {
 
 export const DEXSCREENER_CHART_URL = "https://dexscreener.com/solana/4ditkx9kjajeui4vqdwbzl4sztv6k7fegd4ufbnuz44t";
 
+export function getDexBuyUrl(): string {
+  return `https://jup.ag/swap/SOL-${getTokenMint()}`;
+}
+
 export const X_COMMUNITY_URL = "https://x.com/i/communities/2021322872828878918";
 
 export function getRpcEndpoint(): string {

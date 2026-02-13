@@ -1,4 +1,4 @@
-import { X_COMMUNITY_URL } from "../lib/solana";
+import { DEXSCREENER_CHART_URL, X_COMMUNITY_URL } from "../lib/solana";
 
 export default function Footer() {
   return (
@@ -15,6 +15,15 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-6">
+            <a
+              href={DEXSCREENER_CHART_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-500 hover:text-white transition-colors"
+              aria-label="Buy in DEX"
+            >
+              BUY in DEX
+            </a>
             <a
               href={X_COMMUNITY_URL}
               target="_blank"

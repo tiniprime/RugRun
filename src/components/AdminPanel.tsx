@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getTokenMint, setTokenMint } from "../lib/solana";
+import { DEXSCREENER_CHART_URL, getTokenMint, setTokenMint } from "../lib/solana";
 
 export default function AdminPanel() {
   const [mint, setMint] = useState(getTokenMint());
@@ -89,6 +89,14 @@ export default function AdminPanel() {
               className="text-xs text-brand-400 hover:text-brand-300 underline underline-offset-2"
             >
               Dexscreener
+            </a>
+            <a
+              href={DEXSCREENER_CHART_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-brand-400 hover:text-brand-300 underline underline-offset-2"
+            >
+              BUY in DEX
             </a>
           </div>
         </div>

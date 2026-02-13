@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getTokenMint, getSolscanUrl } from "../lib/solana";
+import { DEXSCREENER_CHART_URL, getTokenMint, getSolscanUrl } from "../lib/solana";
 import { truncatePubkey, copyToClipboard } from "../lib/format";
 
 interface TokenCardProps {
@@ -46,7 +46,7 @@ export default function TokenCard({ className = "", compact = false }: TokenCard
             )}
           </button>
         </div>
-        <div className="mt-3 flex items-center justify-center gap-3">
+        <div className="mt-3 flex items-center justify-center gap-4 flex-wrap">
           <a
             href={getSolscanUrl()}
             target="_blank"
@@ -54,6 +54,14 @@ export default function TokenCard({ className = "", compact = false }: TokenCard
             className="text-xs font-medium text-brand-400 hover:text-brand-300 transition-colors underline underline-offset-2"
           >
             View on Solscan &rarr;
+          </a>
+          <a
+            href={DEXSCREENER_CHART_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-medium text-brand-400 hover:text-brand-300 transition-colors underline underline-offset-2"
+          >
+            BUY in DEX &rarr;
           </a>
         </div>
         {!compact && (

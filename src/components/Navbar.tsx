@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X_COMMUNITY_URL } from "../lib/solana";
+import { DEXSCREENER_CHART_URL, X_COMMUNITY_URL } from "../lib/solana";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 const NAV_LINKS = [
@@ -40,6 +40,14 @@ export default function Navbar() {
         {/* Wallet + mobile toggle */}
         <div className="flex items-center gap-3">
           <a
+            href={DEXSCREENER_CHART_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-xs font-semibold text-gray-300 hover:bg-white/10 hover:border-white/20 transition-colors"
+          >
+            BUY in DEX
+          </a>
+          <a
             href={X_COMMUNITY_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -78,6 +86,15 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href={DEXSCREENER_CHART_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-1 flex items-center justify-center gap-1.5 rounded-lg bg-white/5 border border-white/10 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:bg-white/10 hover:border-white/20 transition-colors"
+            >
+              BUY in DEX
+            </a>
             <a
               href={X_COMMUNITY_URL}
               target="_blank"

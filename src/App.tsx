@@ -1,9 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
-import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
-import { BackpackWalletAdapter } from "@solana/wallet-adapter-backpack";
 import { getSolscanUrl, getDexscreenerUrl, X_COMMUNITY_URL, getRpcEndpoint } from "./lib/solana";
 
 import "@solana/wallet-adapter-react-ui/styles.css";
@@ -173,10 +170,8 @@ export default function App() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
-  const wallets = useMemo(
-    () => [new PhantomWalletAdapter(), new SolflareWalletAdapter(), new BackpackWalletAdapter()],
-    []
-  );
+  // Empty array — Phantom, Solflare, etc. auto-register as Standard Wallets
+  const wallets = useMemo(() => [], []);
   const endpoint = useMemo(() => getRpcEndpoint(), []);
 
   if (isAdmin) {

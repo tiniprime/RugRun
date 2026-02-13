@@ -32,5 +32,5 @@ export function getDexscreenerUrl(): string {
 export const X_COMMUNITY_URL = "https://x.com/i/communities/2021322872828878918";
 
 export function getRpcEndpoint(): string {
-  return import.meta.env.VITE_SOLANA_RPC || clusterApiUrl("mainnet-beta");
+  return import.meta.env.VITE_SOLANA_RPC || "https://api.mainnet-beta.solana.com";
 }

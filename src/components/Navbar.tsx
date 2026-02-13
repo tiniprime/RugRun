@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { X_COMMUNITY_URL } from "../lib/solana";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
-  { label: "Play", href: "#play" },
-  { label: "Leaderboard", href: "#leaderboard" },
+  { label: "Buy", href: "#buy" },
   { label: "Rewards", href: "#rewards" },
   { label: "Token", href: "#token" },
   { label: "FAQ", href: "#faq" },
@@ -48,14 +48,7 @@ export default function Navbar() {
             Join X Community
           </a>
           <div className="hidden sm:block">
-            <button
-              className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-sm font-semibold text-gray-400 cursor-not-allowed"
-              disabled
-              aria-label="Connect wallet coming soon"
-            >
-              Connect Wallet
-              <span className="rounded-md bg-brand-500/20 px-1.5 py-0.5 text-[10px] font-bold text-brand-400">SOON</span>
-            </button>
+            <WalletMultiButton className="!rounded-xl !bg-brand-500 !text-black !font-semibold !text-sm !h-10" />
           </div>
 
           {/* Mobile hamburger */}
@@ -95,14 +88,7 @@ export default function Navbar() {
               Join X Community
             </a>
             <div className="pt-2 sm:hidden">
-              <button
-                className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-sm font-semibold text-gray-400 cursor-not-allowed w-full justify-center"
-                disabled
-                aria-label="Connect wallet coming soon"
-              >
-                Connect Wallet
-                <span className="rounded-md bg-brand-500/20 px-1.5 py-0.5 text-[10px] font-bold text-brand-400">SOON</span>
-              </button>
+              <WalletMultiButton className="!rounded-xl !bg-brand-500 !text-black !font-semibold !text-sm !h-10 !w-full !justify-center" />
             </div>
           </div>
         </div>
